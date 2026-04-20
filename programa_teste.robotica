@@ -1,0 +1,21 @@
+# RoboticaLang
+int status = 1;
+float speed = 10.5;
+
+function check_system(int s):
+    if (s == 1 and speed > 5.0):
+        return 1;
+    else:
+        return 0;
+
+procedure move():
+    while (status == 1):
+        speed = speed + 1.0;
+        if (speed >= 20.0):
+            break;
+
+switch (status):
+    case 1:
+        move();
+    default:
+        status = 0;

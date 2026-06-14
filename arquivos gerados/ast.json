@@ -1,0 +1,177 @@
+{
+    "type": "Program",
+    "body": [
+        {
+            "type": "VariableDeclaration",
+            "dataType": "int",
+            "id": "status",
+            "init": {
+                "type": "Literal",
+                "value": "1"
+            }
+        },
+        {
+            "type": "VariableDeclaration",
+            "dataType": "float",
+            "id": "speed",
+            "init": {
+                "type": "Literal",
+                "value": "10.5"
+            }
+        },
+        {
+            "type": "FunctionDeclaration",
+            "name": "check_system",
+            "parameters": [
+                {
+                    "dataType": "int",
+                    "id": "s"
+                }
+            ],
+            "body": [
+                {
+                    "type": "IfStatement",
+                    "condition": {
+                        "type": "BinaryExpression",
+                        "operator": ">",
+                        "left": {
+                            "type": "BinaryExpression",
+                            "operator": "and",
+                            "left": {
+                                "type": "BinaryExpression",
+                                "operator": "==",
+                                "left": {
+                                    "type": "Identifier",
+                                    "name": "s"
+                                },
+                                "right": {
+                                    "type": "Literal",
+                                    "value": "1"
+                                }
+                            },
+                            "right": {
+                                "type": "Identifier",
+                                "name": "speed"
+                            }
+                        },
+                        "right": {
+                            "type": "Literal",
+                            "value": "5.0"
+                        }
+                    },
+                    "thenBody": [
+                        {
+                            "type": "ReturnStatement",
+                            "argument": {
+                                "type": "Literal",
+                                "value": "1"
+                            }
+                        }
+                    ],
+                    "elseBody": [
+                        {
+                            "type": "ReturnStatement",
+                            "argument": {
+                                "type": "Literal",
+                                "value": "0"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ProcedureDeclaration",
+            "name": "move",
+            "body": [
+                {
+                    "type": "WhileStatement",
+                    "condition": {
+                        "type": "BinaryExpression",
+                        "operator": "==",
+                        "left": {
+                            "type": "Identifier",
+                            "name": "status"
+                        },
+                        "right": {
+                            "type": "Literal",
+                            "value": "1"
+                        }
+                    },
+                    "body": [
+                        {
+                            "type": "AssignmentStatement",
+                            "id": "speed",
+                            "value": {
+                                "type": "BinaryExpression",
+                                "operator": "+",
+                                "left": {
+                                    "type": "Identifier",
+                                    "name": "speed"
+                                },
+                                "right": {
+                                    "type": "Literal",
+                                    "value": "1.0"
+                                }
+                            }
+                        },
+                        {
+                            "type": "IfStatement",
+                            "condition": {
+                                "type": "BinaryExpression",
+                                "operator": ">=",
+                                "left": {
+                                    "type": "Identifier",
+                                    "name": "speed"
+                                },
+                                "right": {
+                                    "type": "Literal",
+                                    "value": "20.0"
+                                }
+                            },
+                            "thenBody": [
+                                {
+                                    "type": "BreakStatement"
+                                }
+                            ],
+                            "elseBody": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "SwitchStatement",
+            "discriminant": {
+                "type": "Identifier",
+                "name": "status"
+            },
+            "cases": [
+                {
+                    "type": "SwitchCase",
+                    "value": "1",
+                    "body": [
+                        {
+                            "type": "CallStatement",
+                            "name": "move"
+                        }
+                    ]
+                },
+                {
+                    "type": "SwitchDefault",
+                    "value": null,
+                    "body": [
+                        {
+                            "type": "AssignmentStatement",
+                            "id": "status",
+                            "value": {
+                                "type": "Literal",
+                                "value": "0"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
